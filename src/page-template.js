@@ -2,32 +2,39 @@ function generateTeam(team) {
   let html = [];
   let type = "";
   let more_info = "";
+  let icon = "";
   for (var i = 0; i < team.length; i++) {
-    switch (team[i].type) {
-      case "Team Manager":
-        type = "Office Number: ";
-        more_info = team[i].office_number;
+    switch (team[i].getRole()) {
+      case "Manager":
+        type = "Office Number";
+        more_info = `<p>${type}: ${team[i].office_number}</p>`;
+        icon = `<i class="fas fa-mug-hot"></i>`;
         break;
       case "Engineer":
-        type = "Github: ";
-        more_info = team[i].git_user;
+        type = "GitHub: ";
+        more_info = `<p>${type}<a href="https://github.com/${team[i].github}" target="blank_">${team[i].github}</a></p>`;
+        icon = `<i class="fas fa-glasses"></i>`;
         break;
       case "Intern":
         type = "School: ";
-        more_info = team[i].school;
+        more_info = `<p>${type}${team[i].school}</p>`;
+        icon = `<i class="fas fa-user-graduate"></i>`;
         break;
     }
+    let name = team[i].name.charAt(0).toUpperCase() + team[i].name.slice(1);
     let employee = `
       <div class="team-area col-4 d-flex justify-content-center">
-        <div class="card">
-          <div class="card-header">
-            <h5 class="card-title">${team[i].name}</h5>
-            <p class="">${team[i].type}</p>
+        <div class="card card-container">
+          <div class="card-header card-header-style">
+            <h5 class="card-title">${name}</h5>
+            <p class="">${icon} ${team[i].getRole()}</p>
           </div>
           <div class="card-body">
-            <p>id: ${team[i].id}</p>
-            <p>email:${team[i].email}</p>
-            <p>${type}${more_info}</p>
+            <p>ID: ${team[i].id}</p>
+            <p>Email: <a href="mailto: ${team[i].email}" target="blank_"> ${
+      team[i].email
+    }</a></p>
+            ${more_info}
           </div>
         </div>
       </div>

@@ -1,34 +1,44 @@
 const fs = require("fs");
 const inquirer = require("inquirer");
 const questions_to_ask = require("./src/questions.js");
-const Employee = require("./src/employee.js");
+const Manager = require("./src/employee/manager.js");
+const Engineer = require("./src/employee/engineer.js");
+const Intern = require("./src/employee/intern.js");
 const team_data = require("./src/page-template");
 
 let member_list = [];
 let add_next_member = true;
 let current_member = "Team Manager";
+let data = {};
 
 function ask_question(member_type) {
-  let other = "";
   inquirer.prompt(questions_to_ask(member_type)).then((response) => {
     switch (member_type) {
       case "Team Manager":
-        other = response.office_number;
+        data = new Manager(
+          response.name,
+          response.id,
+          response.email,
+          response.office_number
+        );
         break;
       case "Engineer":
-        other = response.git_user;
+        data = new Engineer(
+          response.name,
+          response.id,
+          response.email,
+          response.git_user
+        );
         break;
       case "Intern":
-        other = response.school;
+        data = new Intern(
+          response.name,
+          response.id,
+          response.email,
+          response.school
+        );
         break;
     }
-    const data = new Employee(
-      member_type,
-      response.name,
-      response.id,
-      response.email,
-      other
-    );
     member_list.push(data);
 
     if (response.add_member === "Exit") {

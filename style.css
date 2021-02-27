@@ -1,0 +1,8 @@
+.card-container {
+  flex: 1;
+  margin-top: 10px;
+}
+.card-header-style {
+  background-color: #007dff;
+  color: white;
+}

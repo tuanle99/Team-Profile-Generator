@@ -1,6 +1,6 @@
 const manager_questions = {
   type: "input",
-  message: "What is the team manager's office number?: ",
+  message: "What is the Team Manager's office number?: ",
   name: "office_number",
 };
 
