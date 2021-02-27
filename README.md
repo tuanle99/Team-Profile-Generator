@@ -6,6 +6,8 @@ This project create a list of employee for a team by asking a series of question
 
 ![Preview](src/image/Team_List.PNG)
 
+![instruction](src/image/team_instructional_video.mkv)
+
 ## Table of Contents
 
 - [Installation](#installation)
